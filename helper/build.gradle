@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+dependencies {
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'PackerNg Executable Jar',
+                'Implementation-Version': VERSION_NAME,
+                'Main-Class': 'com.mcxiaoke.packer.helper.PackerNg',
+                'Description': 'This is PackerNg executable Jar.'
+    }
+    baseName = 'PackerNg'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+apply from: '../gradle-mvn-push.gradle'

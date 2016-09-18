@@ -1,0 +1,10 @@
+.idea/
+.gradle/
+build/
+apks/
+repo/
+*.iml
+*.apk
+*.pyc
+.DS_Store
+packer.properties
